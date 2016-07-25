@@ -1,6 +1,4 @@
-"Wed Jun  4 21:23:00 EDT 2014
-
-execute pathogen#infect()
+"Sun Jul 24 23:22:46 EDT 2016   :r! date
 
 ""*  General  *""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
     set nocompatible
@@ -14,13 +12,13 @@ execute pathogen#infect()
     set colorcolumn=81
     set cursorline
     set number
-    set tabstop=4           "size of tab in spaces
+    set mouse=a             "enable mouse
+    set tabstop=2           "size of tab in spaces
     set expandtab           "turn tab into spaces
-    set shiftwidth=4        "turn auto tabs into spaces
+    set shiftwidth=2        "turn auto tabs into spaces
     set foldmethod=indent   "code folding
-    "set nofoldenable        "don't fold by default
-    "space toggles current fold
-    noremap <space> za
+    set nofoldenable        "don't fold by default
+    noremap <space> za      "space toggles current fold
     filetype indent on      "autoindent
     set autoindent          "autoindent
     set nowrap
@@ -33,14 +31,14 @@ execute pathogen#infect()
         map j gj
         map k gk
     "kill arrows
-        inoremap  <Up>     <NOP>
-        inoremap  <Down>   <NOP>
-        inoremap  <Left>   <NOP>
-        inoremap  <Right>  <NOP>
-        noremap   <Up>     <NOP>
-        noremap   <Down>   <NOP>
-        noremap   <Left>   <NOP>
-        noremap   <Right>  <NOP>
+    "    inoremap  <Up>     <NOP>
+    "    inoremap  <Down>   <NOP>
+    "    inoremap  <Left>   <NOP>
+    "    inoremap  <Right>  <NOP>
+    "    noremap   <Up>     <NOP>
+    "    noremap   <Down>   <NOP>
+    "    noremap   <Left>   <NOP>
+    "    noremap   <Right>  <NOP>
     "make tabs, nbsps, trailing whitespace visible
         "set listchars=tab:>~,nbsp:~,trail:~
         "set list
@@ -104,8 +102,6 @@ execute pathogen#infect()
             endif
         endif
 ""*  Notes  *"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-    "TODO
-    "never be without vim
     "git
     "differentiate between modes, change cursor, cursorline, something
     "organize this
