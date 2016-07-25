@@ -75,7 +75,7 @@ if ${use_color} ; then
           PS1="${debian_chroot:+($debian_chroot)}$LIGHT_GREEN\u@\h$LIGHT_BLUE \w $LIGHT_PURPLE$(parse_git_branch) \n$LIGHT_YELLOW\! $LIGHT_BLUE\j\$$DEFAULT "
         fi
 
-        alias ls='ls -oAh --group-directories-first --color'
+        alias ls='ls -oh --group-directories-first --color'
         alias grep='grep --colour=auto'
 else
         if [[ ${EUID} == 0 ]] ; then
