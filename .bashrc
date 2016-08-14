@@ -70,13 +70,14 @@ if ${use_color} ; then
         fi
 
         if [[ ${EUID} == 0 ]] ; then
-          PS1="${debian_chroot:+($debian_chroot)}$LIGHT_RED\u@\h$LIGHT_BLUE \w $LIGHT_PURPLE$(parse_git_branch) \n$LIGHT_YELLOW\! $LIGHT_BLUE\j\$$DEFAULT "
+          PS1="${debian_chroot:+($debian_chroot)}$LIGHT_RED\u@\h$LIGHT_BLUE \w $LIGHT_PURPLE\$(parse_git_branch) \n$LIGHT_YELLOW\! $LIGHT_BLUE\j\$$DEFAULT "
         else
-          PS1="${debian_chroot:+($debian_chroot)}$LIGHT_GREEN\u@\h$LIGHT_BLUE \w $LIGHT_PURPLE$(parse_git_branch) \n$LIGHT_YELLOW\! $LIGHT_BLUE\j\$$DEFAULT "
+          PS1="${debian_chroot:+($debian_chroot)}$LIGHT_GREEN\u@\h$LIGHT_BLUE \w $LIGHT_PURPLE\$(parse_git_branch) \n$LIGHT_YELLOW\! $LIGHT_BLUE\j\$$DEFAULT "
         fi
 
         alias ls='ls -oh --group-directories-first --color'
         alias grep='grep --colour=auto'
+        alias rm='rm -iv'
 else
         if [[ ${EUID} == 0 ]] ; then
                 # show root@ when we don't have colors

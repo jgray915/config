@@ -1,4 +1,4 @@
-" Wed Aug  3 06:06:12 EDT 2016p  :r! date
+" Sun Jul 24 23:22:46 EDT 2016   :r! date
 " This file is organized based on the output of :options
 
 " 1 important 
@@ -21,24 +21,23 @@
 "===================================================================================================
   set colorcolumn=101
   set cursorline
+  set hlsearch
  
   syntax enable
   colorscheme default
-  highlight NORMAL ctermbg=black ctermfg=white guibg=#222222 guifg=#FFFFFF
-  highlight colorcolumn ctermbg=darkgray guibg=#272727
-  highlight cursorline cterm=none ctermbg=black gui=none guibg=#000000
-  highlight cursorlinenr cterm=none ctermbg=black gui=none guibg=#222222 guifg=#00AACC
-  highlight Comment ctermfg=darkcyan guifg=#447744
-  highlight PreProc ctermfg=cyan guifg=#00AAAA
-  highlight Constant ctermfg=red guifg=#FFAA77
-  highlight LineNr ctermfg=cyan guifg=#00AACC
-  highlight Folded ctermbg=black ctermfg=darkgray guibg=#222222 guifg=#777777
-  highlight Special ctermfg=darkred guifg=#880000
-  highlight StatusLine ctermbg=black ctermfg=darkgray guibg=#000000 guifg=#444444
-  highlight type guifg=#55AADD
-  highlight statement guifg=#55AADD
-  au InsertLeave * highlight StatusLine ctermbg=black ctermfg=darkgray guibg=#000000 guifg=#444444
-  au InsertEnter * highlight StatusLine ctermbg=black ctermfg=cyan guibg=#000000 guifg=#00FFFF
+  ""highlight NORMAL ctermbg=black ctermfg=white 
+  highlight colorcolumn ctermfg=red ctermbg=black
+  ""highlight cursorline cterm=none ctermbg=black 
+  ""highlight cursorlinenr cterm=none ctermbg=black
+  ""highlight Comment ctermfg=darkcyan
+  ""highlight PreProc ctermfg=cyan
+  ""highlight Constant ctermfg=red
+  ""highlight LineNr ctermfg=cyan
+  ""highlight Folded ctermbg=black ctermfg=darkgray 
+  ""highlight Special ctermfg=darkred 
+  ""highlight StatusLine ctermbg=black ctermfg=darkgray 
+  ""au InsertLeave * highlight StatusLine ctermbg=gray ctermfg=darkgray 
+  ""au InsertEnter * highlight StatusLine ctermbg=cyan ctermfg=cyan 
 " 6 multiple windows 
 "===================================================================================================
 " 7 multiple tab pages 
@@ -136,7 +135,7 @@
   inoremap <F5> <ESC> :w<CR> :<C-U>make && ./%:r<CR>
 
   " space toggles current fold
-  noremap <space> za
+  ""noremap <space> za
 
   " step up/down through wrapped lines
   map j gj
