@@ -1,8 +1,28 @@
 " Sat Feb 11 22:17:10 EST 2017 :r! date
 " This file is organized based on the output of :options
 
-" 1 commands ------------------------------------------------------------------------------------{{{
-" <C-x> in insert mode
+" 0 commands ------------------------------------------------------------------------------------{{{
+" FOCUS ON MOTIONS AND OPERATORS
+" <C-x> in insert mode for completion mode
+" <C-p> complete from previous in text
+" <C-r> in insert mode to put from register
+" .  Dot! Repeat the change you just made!
+" i prefix, iw, ip, i", i(, as a sentence!, it inner tags
+" f finds! f. => move char to next . cf. changes to next .!
+" / search is a movement! c/foo changes up to foo!
+" ma to set mark a. 'a goes to 0 of line of mark, `a returns to mark
+" y prefix! prefix y with register ("a, "b, etc) to yank into that register
+" P capital p to paste before rather than after
+" recording macros just records keypresses into a register, so y or d into register can be executed
+" possible plugins: surround, commentary
+" * in normal to search word on the cursor
+
+" The following enables omnicomplete with <c-x><c-o>
+filetype plugin on
+set omnifunc=syntaxcomplete#Complete
+
+" add kspell to complete to complete from dictionary when spell is on
+set complete+=kspell
 " }}}
 
 " 1 important -----------------------------------------------------------------------------------{{{
@@ -24,8 +44,10 @@ set path+=**
 set listchars=tab:>~,nbsp:~,trail:~
 
 set number
+set relativenumber
 set nowrap
-set linebreak
+set nolinebreak
+set textwidth=100
 "}}}
 
 " 5 syntax, highlighting and spelling -----------------------------------------------------------{{{ 
