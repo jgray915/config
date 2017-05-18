@@ -1,11 +1,23 @@
-" Sat Feb 11 22:17:10 EST 2017 :r! date
+"test Sat Feb 11 22:17:10 EST 2017 :r! date
 " This file is organized based on the output of :options
+
+" open gvim maximized on windows
+au GUIEnter * simalt ~x
+
+let $HOME = $USERPROFILE
+set runtimepath=~/vimfiles,$VIMRUNTIME
+cd ~
+set autochdir
+set ignorecase
+" search is case sensitive if it includes capitals, otherwise insensitive. requires set ignorecase
+set smartcase 
 
 " 0 commands ------------------------------------------------------------------------------------{{{
 " FOCUS ON MOTIONS AND OPERATORS
 " <C-x> in insert mode for completion mode
 " <C-p> complete from previous in text
 " <C-r> in insert mode to put from register
+"   /<C-r> + => find text in clipboard
 " .  Dot! Repeat the change you just made!
 " i prefix, iw, ip, i", i(, as a sentence!, it inner tags
 " f finds! f. => move char to next . cf. changes to next .!
@@ -45,13 +57,16 @@ set listchars=tab:>~,nbsp:~,trail:~
 
 set number
 set relativenumber
+" don't wrap on file load
 set nowrap
-set nolinebreak
+" don't wrap while typing, including comments
+set formatoptions-=t
+set formatoptions-=c
 set textwidth=100
 "}}}
 
 " 5 syntax, highlighting and spelling -----------------------------------------------------------{{{ 
-set colorcolumn=101
+" set colorcolumn=101
 set cursorline
 set hlsearch
 
@@ -106,6 +121,7 @@ if has("gui_running")
   highlight type guifg=#4E9A06
   highlight statement guifg=#C4A000
   highlight Visual gui=reverse
+  highlight Search guifg=black
   ""set guioptions -=m " hide menubar
   ""ret guioptions -=T " hide toolbar
   " hide right scrollbar
@@ -166,18 +182,22 @@ set nofoldenable
 ""inoremap   <Left>   <NOP>
 ""inoremap   <Right>  <NOP>
 
+noremap :Q :q
+noreabbrev wq w<bar>bdelete
+noremap :q :bdelete
 noremap <Leader>v :e $MYVIMRC<CR>
 noremap <Leader>w :w<cr>
-noremap <Leader>q :q<cr>
+noremap <Leader>q :bdelete
 ""noremap <Leader>o :tabe
 noremap <Leader>e :e 
 ""noremap :e :tabe
-noremap <leader><leader> <esc>
+noremap <leader><leader> <esc>:noh<Return>
+noremap <esc> <esc>:noh<Return>
 
 " copy/paste to clipboard (requires installation of vim-gtk?)
-noremap <leader>y "+y
-noremap <leader>p "+p
-inoremap <Leader>p <C-o>"+p
+""noremap <leader>y "+y
+""noremap <leader>p "+p
+""inoremap <Leader>p <C-o>"+p
 
 " markdown support
 noremap <leader>h1 yypv$r=
@@ -196,8 +216,8 @@ noremap <C-j> <C-f>
 noremap <C-k> <C-b>
 
 " save file, run make, run prog. <C-U> on cmd line clears it, don't know why
-noremap <F5> :w<CR> :<C-U>make && ./%:r<CR>
-inoremap <F5> <ESC> :w<CR> :<C-U>make && ./%:r<CR>
+"noremap <F5> :w<CR> :<C-U>make && ./%:r<CR>
+"inoremap <F5> <ESC> :w<CR> :<C-U>make && ./%:r<CR>
 
 " space toggles current fold
 noremap <space> za
@@ -218,19 +238,27 @@ vnoremap [ <esc>a]<esc>`<i[<esc>`>ll
 vnoremap { <esc>a}<esc>`<i{<esc>`>ll
 vnoremap ` <esc>a`<esc>`<i`<esc>`>ll
 
+" find currently highlighted text
+vnoremap / "vy <esc> /<C-r>v<RETURN>
+
 " filetype dependent commenting
 augroup comments
   autocmd!
   autocmd FileType javascript nnoremap <buffer> <localleader>c I// <esc>
   autocmd FileType python     nnoremap <buffer> <localleader>c I# <esc>
 augroup END
+
+" WIP: search all open files
+""noremap :vgrep :bufdo vimgrepadd the % | copen
+
 " }}}
 
 " 19 reading and writing files ------------------------------------------------------------------{{{ 
 " }}}
 
 " 20 the swap file ------------------------------------------------------------------------------{{{ 
-set directory=$HOME/.vimfiles/
+set directory=~/vimfiles/
+set backupdir=~/vimfiles/
 " }}}
 
 " 21 command line editing -----------------------------------------------------------------------{{{ 
@@ -240,6 +268,8 @@ set wildmenu
 " }}}
 
 " 22 executing external commands ----------------------------------------------------------------{{{ 
+" On Windows, open current file in Chrome
+nnoremap <F5> :update<Bar>silent !start "C:\\Program Files (x86)\Google\Chrome\Application\chrome.exe" "file://%:p<CR>
 " }}}
 
 " 23 running make and jumping to errors ---------------------------------------------------------{{{ 
@@ -265,7 +295,7 @@ augroup END
 
 augroup templates
   autocmd!
-  autocmd BufNewFile *.html 0r ~/.vimfiles/html.html | let IndentStyle = "html"
+  autocmd BufNewFile *.html 0r ~/vimfiles/html.html | let IndentStyle = "html"
 augroup END
 
 augroup filetype_vim
@@ -273,7 +303,10 @@ augroup filetype_vim
   autocmd FileType vim setlocal foldmethod=marker
 augroup END
 
-cd ~
 setlocal foldmethod=marker
 " }}}
 
+execute pathogen#infect()
+
+let NERDTreeShowBookmarks=1
+""autocmd VimEnter * NERDTree
